@@ -10,8 +10,10 @@
 > &ensp;&ensp;&ensp;&ensp; + Documentation <br>
 
 **8\/22/2024: `v1.01`**
-> \- Updated documentation:
+> \- Updated documentation: <br>
 > &ensp;&ensp;&ensp;&ensp; + Conditionals <br>
+> &ensp;&ensp;&ensp;&ensp; + Loops <br>
+> &ensp;&ensp;&ensp;&ensp; + Functions <br>
 
 ## TODO:
 > \- Design syntax grammar for NULL <br>
@@ -127,16 +129,61 @@ Next, we have the relational and comparison operators:
 
 ### Conditionals
 
-For conditionals, we have the if statement
+For conditionals, we use `if (<bool expr>) { <expr> }` for 'if' statements. To use 'else-if' or 'else' statements, we use `elif (<bool expr>) { <expr> }` and `else { <expr> }` following the closing brace `}`. Below is some example code utilizing conditionals in NULL:
+
+```
+var #int a := 5;
+
+if (a > 5) {
+    printout "Greater than 5";
+} elif (a < 5) {
+    printout "Less than 5";
+} else {
+    printout "Equal to 5;
+}
+```
 
 
 ### Loops
 
+We have two different types of loops: while loops and for loops. We use `while (<condition>) { <expr> }` for while loops and `for (var #int i := <value>; <condition>; <update>) { <expr> }`. Below is some example code utilizing loops in NULL:
+
+```
+var #int sum := 0
+for (var #int i := 0; i < 10; i := i + 1) {
+    sum := sum + i;
+    printout sum;    $ Print current sum of values 1-10
+}
+
+var #int num := 5302
+while (num != 0) {
+    printout num % 10;   $ Prints each digit in number
+    num := num / 10;
+}
+```
+
 
 ### Functions
 
+Functions have a couple of syntax including defining functions and making function calls. For defining functions, we use `func #<type> <name>(#<type_1> <param_1>, #<type_2> <param_2>, . . .) { <expr> }` with `#<type>` and parameters being optional. For function calls, we use `<name>(<args>);`. For functions with return types, we use `ret <value>` to return values from a function. Below is some example code demonstrating defining and calling functions:
+
+```
+func #int add(#int a, #int b) {
+    ret a + b;
+}
+
+func writeFoo() {
+    printout "Foo";
+}
+
+printout add(5, 7);   $ Prints 12
+writeFoo();   $ Performs code in writeFoo function
+```
+
 
 ### Classes
+
+Classes 
 
 
 ### Inheritance
