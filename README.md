@@ -3,16 +3,32 @@
 ## Version History
 
 **8\/21/2024: `v1.0`**
+> \- Created repository <br>
 > \- Updated README.md with roadmap for NULL programming language <br>
 > \- Sections Added: <br>
-> - S
+> &ensp;&ensp;&ensp;&ensp; + Description <br>
+> &ensp;&ensp;&ensp;&ensp; + Documentation <br>
+
+**8\/22/2024: `v1.01`**
+> \- Updated documentation:
+> &ensp;&ensp;&ensp;&ensp; + Conditionals <br>
 
 ## TODO:
 > \- Design syntax grammar for NULL <br>
-> \- Create lexer/scanner <br>
-> \- Create parser <br>
-> \- Create AST <br>
-> \- Create evaluator <br>
+> \- Create lexer/scanner to scan all tokens in NULL programs <br>
+> \- Create parser to parse all tokens found <br>
+> \- Create AST to  <br>
+> \- Create evaluator to interpret NULL code: <br>
+> &ensp;&ensp;&ensp;&ensp; + Implement binary operations <br>
+> &ensp;&ensp;&ensp;&ensp; + Implement unary operations <br>
+> &ensp;&ensp;&ensp;&ensp; + Implement printing <br>
+> &ensp;&ensp;&ensp;&ensp; + Implement variable assignments <br>
+> &ensp;&ensp;&ensp;&ensp; + Implement blocks <br>
+> &ensp;&ensp;&ensp;&ensp; + Implement conditionals <br>
+> &ensp;&ensp;&ensp;&ensp; + Implement loops <br>
+> &ensp;&ensp;&ensp;&ensp; + Implement functions <br>
+> &ensp;&ensp;&ensp;&ensp; + Implement classes <br>
+> &ensp;&ensp;&ensp;&ensp; + Implement inheritance <br>
 
 
 ## Description
@@ -78,13 +94,40 @@ var #str c := "Hello World!";
 var #bool d := true;
 ```
 
-### Collections
+### Logical, Relational, and Comparison Operators
 
+Let's assume we have the following variables defined:
 
-### Logical Expressions
+```
+var #bool a := true;
+var #bool b := false;
+var #int c := 13;
+var #int d := 19;
+```
+
+For logical operators, we have `and` for the **AND** boolean operation, `or` for the **OR** boolean operation, and `not` for the **NOT** boolean operation:
+
+```
+printout a and b    $ Prints 'false'
+printout a or b     $ Prints 'true'
+printout not a      $ Prints 'false'
+```
+
+Next, we have the relational and comparison operators:
+
+| Operator | Example                   |
+|----------|---------------------------|
+| `>`      | `c > d    $ 'false'`      |
+| `<`      | `c < d    $ 'true'`       |
+| `>=`     | `c >= d   $ 'false'`      |
+| `<=`     | `c <= d   $ 'true'`       |
+| `==`     | `c == d   $ 'false'`      |
+| `!=`     | `c != d   $ 'true'`       |
 
 
 ### Conditionals
+
+For conditionals, we have the if statement
 
 
 ### Loops
