@@ -15,6 +15,11 @@
 > &ensp;&ensp;&ensp;&ensp; + Loops <br>
 > &ensp;&ensp;&ensp;&ensp; + Functions <br>
 
+**8\/25/2024: `v1.02`**
+> \- Updated documentation: <br>
+> &ensp;&ensp;&ensp;&ensp; + Classes <br>
+> &ensp;&ensp;&ensp;&ensp; + Inheritance <br>
+
 ## TODO:
 > \- Design syntax grammar for NULL <br>
 > \- Create lexer/scanner to scan all tokens in NULL programs <br>
@@ -183,8 +188,48 @@ writeFoo();   $ Performs code in writeFoo function
 
 ### Classes
 
-Classes 
+Classes have many syntaxes including defining a class, instantiating objects, and default methods in classes such as the constructor, toString, and equals methods. For defining classes, we use `@class <name> { <attributes> <methods> }`. For instantiating objects, we use `@<class_name> <name> := <class_name>(<attributes>)`. Below is some example code defining classes and instantiating objects:
+
+```
+@class Person {
+    var #str name;
+    var #int age;
+
+    func Person(#str name, #int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    func #str toString() {
+        ret name + " " + age;
+    }
+
+    func #bool equals(@Object o) {
+        if (this == o) {
+            ret true;
+        }
+        if (o == null or getClass() != o.getClass()) {
+            ret false;
+        }
+        @Person person := (@Person) o;
+        ret @Objects.equals(name, person.name) && @Objects.equals(age, person.age);
+    }
+}
+
+@Person p1 = Person("John Doe", 30);
+@Person p2 = p1;
+printout p1.toString();
+printoout p1.equals(p2);
+```
 
 
 ### Inheritance
 
+
+
+## NULL Grammar
+
+Below is the grammar for NULL:
+
+```
+```
