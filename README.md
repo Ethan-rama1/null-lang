@@ -264,28 +264,57 @@ Here we define a list of tokens that will be used in the grammar:
 
 ```
 DECLARATION ::= VAR_DEC | FUNC_DEC | CLASS_DEC | STATEMENT ;
-VAR_DEC     ::= "var" "#" DATATYPE IDENTIFIER (":=" EXPRESSION)? ";" ;  
-FUNC_DEC    ::= "func" ("#" RET_TYPE)? IDENTIFIER "(" PARAMS* ")" BLOCK ;
-CLASS_DEC   ::= "@class" IDENTIFIER "{" FUNCTION* "}" ;
+VAR_DEC     ::= "var" DATATYPE IDENTIFIER (":=" EXPRESSION)? ";" ;  
+FUNC_DEC    ::= "func" FUNCTION ;
+CLASS_DEC   ::= "@class" IDENTIFIER ( "->" IDENTIFIER )? "{" FUNCTION* "}" ;
 ```
 
 ### Statements:
 
 ```
-
+STATEMENT    ::= EXPR_STMT | FOR_STMT | IF_STMT | ELIF_STMT | PRINT_STMT | RET_STMT | WHILE_STMT | BLOCK ;
+EXPR_STMT    ::= EXPRESSION ";" ;
+FOR_STMT     ::= "for" "(" ( VAR_DEC | EXPR_STMT ";" ) EXPRESSION? ";" EXPRESSION? ")" BLOCK ;
+IF_STMT      ::= "if" "(" EXPRESSION ")" BLOCK ELIF_STMT* ( "else" BLOCK )? ;
+ELIF_STMT    ::= "elif" "(" EXPRESSION ")" BLOCK ;
+PRINT_STMT   ::= "printout" EXPRESSION ";"
+RET_STMT     ::= "ret" EXPRESSION ";"
+WHILE_STMT   ::= "while" "(" EXPRESSION ")" BLOCK ;
+BLOCK        ::= "{" DECLARATION* "}" ;
 ```
 
 ### Expressions:
 
 ```
+EXPRESSION    ::= ASSIGNMENT ;
+ASSIGNMENT    ::= ( CALL "." )? IDENTIFIER ":=" ASSIGNMENT | LOGIC_OR ; 
+LOGIC_OR      ::= LOGIC_AND ( "or" LOGIC_AND )* ;
+LOGIC_AND     ::= EQUALITY ( "and" EQUALITY )* ;
+EQUALITY      ::= COMPARISON ( ( "!=" | "==" ) COMPARISON )* ;
+COMPARISON    ::= TERM ( ( ">" | ">=" | "<" | "<=" ) TERM )* ;
+TERM          ::= FACTOR ( ( "+" | "-" ) FACTOR )* ;
+FACTOR        ::= UNARY ( ( "*" | "/" ) UNARY )* ;
+UNARY         ::= ( "!" | "-" ) UNARY | CALL ; 
+CALL          ::= PRIMARY ( "(" ARGS ")" | "." IDENTIFIER )* ;
+PRIMARY       ::= "true" | "false" | "null" | "this" | NUMBER | STRING | IDENTIFIER | "(" EXPRESSION ")" | "super" "." IDENTIFIER ; 
+```
 
+### Simplification
+
+```
+FUNCTION    ::= ( RET_TYPE )? IDENTIFIER "(" ( PARAMS )? ")" BLOCK ;
+DATATYPE    ::= "#" TYPE ;
+TYPE        ::= "int" | "str" | "flt" | "bool" ;
+RET_TYPE    ::= "#" TYPE ;
+PARAMS      ::= DATATYPE IDENTIFIER ( "," DATATYPE IDENTIFIER )* ;
+ARGS        ::= IDENTIFIER ( "," IDENTIFIER )* ;
 ```
 
 ### Lexical
 
 ```
 NUMBER      ::= DIGIT+ ( "." DIGIT+ )? ;
-STRING      ::= "\"" (any character execpt "\"")* "\"" ;
+STRING      ::= "\"" (any non-"\"" character)* "\"" ;
 IDENTIFIER  ::= ALPHA ( ALPHA | DIGIT )* ;
 ALPHA       ::= [a-zA-Z_] ;
 DIGIT       ::= [0-9] ;
