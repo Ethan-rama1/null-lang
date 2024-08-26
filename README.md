@@ -32,7 +32,7 @@
 > \- Design syntax grammar for NULL <br>
 > \- Create lexer/scanner to scan all tokens in NULL programs <br>
 > \- Create parser to parse all tokens found <br>
-> \- Create AST to  <br>
+> \- Create AST to order all tokens according to grammar <br>
 > \- Create evaluator to interpret NULL code: <br>
 > &ensp;&ensp;&ensp;&ensp; + Implement binary operations <br>
 > &ensp;&ensp;&ensp;&ensp; + Implement unary operations <br>
