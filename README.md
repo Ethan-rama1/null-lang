@@ -20,6 +20,11 @@
 > &ensp;&ensp;&ensp;&ensp; + Classes <br>
 > &ensp;&ensp;&ensp;&ensp; + Inheritance <br>
 
+**8\/26/2024: `v1.03`**
+> \- Updated grammar rules for NULL: <br>
+> &ensp;&ensp;&ensp;&ensp; + Declarations <br>
+> &ensp;&ensp;&ensp;&ensp; + Lexical <br>
+
 ## TODO:
 > \- Design syntax grammar for NULL <br>
 > \- Create lexer/scanner to scan all tokens in NULL programs <br>
@@ -225,11 +230,63 @@ printoout p1.equals(p2);
 
 ### Inheritance
 
+Class inheritance works similarly to java. For defining an inherited class, we use: `@class <i_name> -> <base> { <attributes> <methods> }`. To override inherited methods from base class, we use: `@replace func <ret_type> <name>(<params>) { }`. To call superclass' constructor in subclass constructor, we use: `super(<args>);`. Below is some example code defining inherited classes:
+
+```
+@class Tree {
+    var #int height;
+    var #int age;
+
+    func Tree(#int height, #int age) {
+        this.height = height;
+        this.age = age;
+    }
+}
+
+@class AppleTree -> Tree {
+    var #int height;
+    var #int age;
+    var #str fruit;
+
+    func AppleTree(#int height, #int age, #int fruit) {
+        super(height, age);
+        this.fruit = fruit;
+    }
+}
+```
 
 
 ## NULL Grammar
 
-Below is the grammar for NULL:
+Here we define a list of tokens that will be used in the grammar:
+
+### Declarations:
 
 ```
+DECLARATION ::= VAR_DEC | FUNC_DEC | CLASS_DEC | STATEMENT ;
+VAR_DEC     ::= "var" "#" DATATYPE IDENTIFIER (":=" EXPRESSION)? ";" ;  
+FUNC_DEC    ::= "func" ("#" RET_TYPE)? IDENTIFIER "(" PARAMS* ")" BLOCK ;
+CLASS_DEC   ::= "@class" IDENTIFIER "{" FUNCTION* "}" ;
+```
+
+### Statements:
+
+```
+
+```
+
+### Expressions:
+
+```
+
+```
+
+### Lexical
+
+```
+NUMBER      ::= DIGIT+ ( "." DIGIT+ )? ;
+STRING      ::= "\"" (any character execpt "\"")* "\"" ;
+IDENTIFIER  ::= ALPHA ( ALPHA | DIGIT )* ;
+ALPHA       ::= [a-zA-Z_] ;
+DIGIT       ::= [0-9] ;
 ```
