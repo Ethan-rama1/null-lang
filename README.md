@@ -24,6 +24,9 @@
 > \- Updated grammar rules for NULL: <br>
 > &ensp;&ensp;&ensp;&ensp; + Declarations <br>
 > &ensp;&ensp;&ensp;&ensp; + Lexical <br>
+> &ensp;&ensp;&ensp;&ensp; + Expressions <br>
+> &ensp;&ensp;&ensp;&ensp; + Statements <br>
+> &ensp;&ensp;&ensp;&ensp; + Simplification <br>
 
 ## TODO:
 > \- Design syntax grammar for NULL <br>
